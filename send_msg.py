@@ -10,7 +10,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('寝てた')
-    print(client.guilds)
+    print(client.guilds[id])
 
 #BOTの起動
 client.run(TOKEN)
