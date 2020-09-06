@@ -124,7 +124,7 @@ async def on_message(message):
         
         if cycle_h > 0 or cycle_m > 0:
             poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand + ' ' + message.channel.id)
         else:
             return
         
