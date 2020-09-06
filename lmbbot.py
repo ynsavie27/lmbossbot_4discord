@@ -101,11 +101,11 @@ async def on_message(message):
             cycle_h = 8
             rand = '(ランダム)'
         else:
-            await message.channel.send('Unknown Boss Name')
+            await message.channel.send('不明なボス名')
             return
         
         etimes = s_msg_list[2]
-        errmsg = 'Wrong Time Format'
+        errmsg = '不正な時刻指定'
         
         if len(etimes) == 4:
             if etimes.isdecimal():
@@ -125,7 +125,7 @@ async def on_message(message):
         if cycle_h > 0 or cycle_m > 0:
             poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
             await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
-            print(str(message.channel.id))
+            #print(str(message.channel.id))
         else:
             return
         
