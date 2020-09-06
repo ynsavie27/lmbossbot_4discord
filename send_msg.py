@@ -7,7 +7,7 @@ CHANNEL_ID = 751985875868581888
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
 
-async def send_msg()
+async def send_msg():
     channel = client.get_channel(CHANNEL_ID)
     await channel.send('hello')
 
