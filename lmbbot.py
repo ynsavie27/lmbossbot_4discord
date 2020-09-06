@@ -26,7 +26,7 @@ async def on_message(message):
     if len(s_msg_list) < 3:
         return
     
-    if s_msg_list[0] == '/bend':
+    if s_msg_list[0] == '/end':
         cycle_h = 0
         cycle_m = 0
         rand = ''
