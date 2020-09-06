@@ -2,7 +2,7 @@ import datetime
 #discordのライブラリをインポート
 import discord
 #自分のトークンにしてね
-TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.PfT7Bfol0q8RDaYYi_TaYWRD-YE'
+TOKEN = 'THi5IsDuMMyaCCesSTOK3nQ4.Cl2FMQ.ThIsi5DUMMyAcc3s5ToKen7kKWs'
 
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
