@@ -20,17 +20,51 @@ async def on_message(message):
         return
 #    if message.content == '/hello':
 #        await message.channel.send('hello')
-    now = datetime.datetime.today()
+
     # コマンド解釈
     s_msg_list = message.content.split(' ') #半角スペースでメッセージを分割しリストに格納
+    if len(s_msg_list) < 3:
+    	return
+    
     if s_msg_list[0] == '/bend':
-        if s_msg_list[1] == 'てきこ':
-            await message.channel.send('てきこend')
-        elif s_msg_list[1] == 'カスパ':
-            poptime = now + datetime.timedelta(hours=2)
-            await message.channel.send('カスパ Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M"))
+        cycle_h = 0
+        cycle_m = 0
+        rand = ''
+        bname = s_msg_list[1]
+        
+        if bname == 'てきこ':
+            cycle_m = 5
+            rand = '(random)'
+        elif bname == 'カスパ':
+            cycle_h = 2
         else:
-            return
+        	await message.channel.send('Unknown Boss Name')
+        	return
+        
+        etimes = s_msg_list[2]
+        errmsg = 'Wrong Time Format'
+        
+        if len(etimes) == 4:
+        	if etimes.isdecimal():
+        		ehour = int(etimes[:2])
+        		emin = int(etimes[2:])
+        		if 0 <= ehour and ehour < 24 and 0 <= emin and emin < 60:
+        			tdy = datetime.datetime.today()
+        			edaytime = tdy.replace(hour=ehour, minute=emin, second=0, microsecond=0)
+        			if tdy < edaytime:
+        				edaytime = edaytime + datetime.timedelta(days=-1)
+        			errmsg = ''
+        
+        if len(errmsg) > 0:
+        	await message.channel.send(errmsg)
+        	return
+        
+        if cycle_h > 0 or cycle_m > 0:
+        	poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
+        	await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
+        else:
+        	return
+        
     else:
         return
 
