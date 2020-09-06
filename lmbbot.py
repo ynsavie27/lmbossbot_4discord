@@ -8,9 +8,9 @@ TOKEN = 'THi5IsDuMMyaCCesSTOK3nQ4.Cl2FMQ.ThIsi5DUMMyAcc3s5ToKen7kKWs'
 client = discord.Client()
 
 #BOTが起動したとき
-#@client.event
-#async def on_ready():
-#    print('起動しました！(\'◇\')ゞ')
+@client.event
+async def on_ready():
+    print('寝てた')
 
 #メッセージを受け取ったとき
 @client.event
