@@ -10,7 +10,7 @@ client = discord.Client()
 async def send_msg():
     channel = client.get_channel(CHANNEL_ID)
     await channel.send('hello')
-    await client.close 
+    client.close 
 
 #BOTが起動したとき
 @client.event
