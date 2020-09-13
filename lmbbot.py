@@ -10,7 +10,7 @@ TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.Zh95SnG5-FVQUPy5vz_GeNmFKH0'
 client = discord.Client()
 
 # DB接続オブジェクトを生成
-conn = sqlite3.connect('lmbbot.sqlite3')
+conn = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
 c = conn.cursor()
 
 @tasks.loop(minutes=1.0)
