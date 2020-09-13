@@ -17,9 +17,10 @@ c = conn.cursor()
 async def fetch_popdata():
     now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
     print(str(now))
-    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
+    #c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
+    c.execute("SELECT * FROM bosspop where ? <= Pop_Time", (now,))
     res = c.fetchall()
-    print(str(res))
+    print(len(res))
     # for row in res:
     #     print(row)
 
