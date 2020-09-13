@@ -162,7 +162,7 @@ async def on_message(message):
     else:
         return
 
-loop.start()
+fetch_popdata.start()
 
 #BOTの起動
 client.run(TOKEN)
