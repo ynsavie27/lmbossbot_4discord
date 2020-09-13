@@ -30,6 +30,9 @@ async def fetch_popdata():
 #BOTが起動したとき
 @client.event
 async def on_ready():
+    # c.execute("SELECT * FROM bosspop")
+    # ress = c.fetchall()
+
     print('寝てた')
 
 #メッセージを受け取ったとき
@@ -144,7 +147,10 @@ async def on_message(message):
         
         if cycle_h > 0 or cycle_m > 0:
             poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
-            
+
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
+            #print(str(message.channel.id))
+
             ch_id = message.channel.id
             boss_id = bname
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
@@ -155,14 +161,11 @@ async def on_message(message):
             #DB書き込み
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
-
+            
             # for row in c.execute('SELECT * FROM bosspop'):
             #     print(row)
-            
+                        
             # conn.close
-
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
-            #print(str(message.channel.id))
         else:
             return
         
