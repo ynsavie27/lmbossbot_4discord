@@ -3,5 +3,7 @@ import sqlite3
 conn = sqlite3.connect('lmbbot.sqlite3')
 c = conn.cursor()
 c.execute('SELECT * FROM bosspop')
-for row in c.fetchall():
+res = c.f()
+print(len(res))
+for row in res:
     print(row)
