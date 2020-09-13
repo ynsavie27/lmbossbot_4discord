@@ -1,4 +1,5 @@
 import datetime
+import sqlite3
 #discordのライブラリをインポート
 import discord
 #自分のトークンにしてね
@@ -6,6 +7,10 @@ TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.Zh95SnG5-FVQUPy5vz_GeNmFKH0'
 
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
+
+# DB接続オブジェクトを生成
+conn = sqlite3.connect('lmbbot.sqlite3')
+c = conn.cursor()
 
 #BOTが起動したとき
 @client.event
@@ -124,6 +129,20 @@ async def on_message(message):
         
         if cycle_h > 0 or cycle_m > 0:
             poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
+            
+            ch_id = message.channel.id
+            boss_id = bname
+            pop_time = poptime.strftime("%Y%m%d%H%M")
+            addtext = ""
+            msgsendflg = 0
+            disableflg = 0
+
+            #DB書き込み
+            c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)",
+                                          (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
+            conn.commit
+            conn.close
+
             await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
             #print(str(message.channel.id))
         else:
