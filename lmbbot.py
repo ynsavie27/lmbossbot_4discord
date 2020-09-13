@@ -16,13 +16,12 @@ c = conn.cursor()
 @tasks.loop(minutes=1.0)
 async def fetch_popdata():
     now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
-    print(str(now))
-    #c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
+    # print(str(now))
     c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now+10))
     res = c.fetchall()
-    print(len(res))
+    # print(len(res))
     for row in res:
-        print(row)
+        # print(row)
         send_channel = client.get_channel(row[1])
         await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
         c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
@@ -157,8 +156,8 @@ async def on_message(message):
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
 
-            for row in c.execute('SELECT * FROM bosspop'):
-                print(row)
+            # for row in c.execute('SELECT * FROM bosspop'):
+            #     print(row)
             
             # conn.close
 
