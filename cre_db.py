@@ -1,6 +1,4 @@
 import sqlite3
-#discordのライブラリをインポート
-import discord
 
 conn = sqlite3.connect('lmbbot.sqlite3')
 c = conn.cursor()
