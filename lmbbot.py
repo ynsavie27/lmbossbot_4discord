@@ -142,7 +142,7 @@ async def on_message(message):
                                           (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
 
-            for row in c.execute("SELECT * FROM bosspop")
+            for row in c.execute('SELECT * FROM bosspop'):
                 print(row)
             
             conn.close
