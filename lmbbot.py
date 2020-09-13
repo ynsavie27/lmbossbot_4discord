@@ -50,7 +50,7 @@ async def on_message(message):
         bname = s_msg_list[1]
         
         if bname == 'てきこ':
-            cycle_m = 15
+            cycle_m = 10
             rand = '(起きれば)'
         elif bname == 'アルフィア':
             cycle_h = 4
@@ -153,8 +153,8 @@ async def on_message(message):
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
 
-            # for row in c.execute('SELECT * FROM bosspop'):
-            #     print(row)
+            for row in c.execute('SELECT * FROM bosspop'):
+                print(row)
             
             conn.close
 
