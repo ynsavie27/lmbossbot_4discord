@@ -9,24 +9,26 @@ TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.Zh95SnG5-FVQUPy5vz_GeNmFKH0'
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
 
-# DB接続オブジェクトを生成
-conn = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
-c = conn.cursor()
+# # DB接続オブジェクトを生成
+# conn = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
+# c = conn.cursor()
 
 @tasks.loop(minutes=1.0)
 async def fetch_popdata():
+    conn1 = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
+    c1 = conn1.cursor()
     now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
     print(str(now))
-    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now+10))
-    res = c.fetchall()
+    c1.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now+10))
+    res = c1.fetchall()
     print(len(res))
     for row in res:
         print(row)
         send_channel = client.get_channel(row[1])
         await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
-        c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
-        conn.commit
-    # conn.close
+        c1.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
+        conn1.commit
+    conn1.close
 
 #BOTが起動したとき
 @client.event
@@ -159,13 +161,16 @@ async def on_message(message):
             disableflg = 0
 
             #DB書き込み
+            conn = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
+            c = conn.cursor()
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
             
-            for row in c.execute('SELECT * FROM bosspop'):
-                print(row)
+            # for row in c.execute('SELECT * FROM bosspop'):
+            #     print(row)
 
-            # conn.close
+            conn.close
+            
         else:
             return
         
