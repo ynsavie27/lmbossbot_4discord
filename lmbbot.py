@@ -21,8 +21,10 @@ async def fetch_popdata():
     c.execute("SELECT * FROM bosspop where ? <= Pop_Time", (now,))
     res = c.fetchall()
     print(len(res))
-    # for row in res:
-    #     print(row)
+    for row in res:
+        print(row)
+        send_channel = client.get_channel(row[1])
+        await send_channel.send(row[2] + row[3] + row[4] + row[5] + row[6])
 
 #BOTが起動したとき
 @client.event
