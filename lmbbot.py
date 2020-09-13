@@ -38,7 +38,7 @@ async def on_message(message):
         bname = s_msg_list[1]
         
         if bname == 'てきこ':
-            cycle_m = 10
+            cycle_m = 15
             rand = '(起きれば)'
         elif bname == 'アルフィア':
             cycle_h = 4
@@ -132,7 +132,7 @@ async def on_message(message):
             
             ch_id = message.channel.id
             boss_id = bname
-            pop_time = poptime.strftime("%Y%m%d%H%M")
+            pop_time = int(poptime.strftime("%y%m%d%H%M"))
             addtext = ""
             msgsendflg = 0
             disableflg = 0
