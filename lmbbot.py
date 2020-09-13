@@ -141,6 +141,10 @@ async def on_message(message):
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)",
                                           (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
+
+            for row in c.execute("SELECT * FROM bosspop")
+                print(row)
+            
             conn.close
 
             await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
