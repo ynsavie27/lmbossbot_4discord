@@ -18,13 +18,14 @@ async def fetch_popdata():
     now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
     print(str(now))
     #c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
-    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ?", (now, now+10))
+    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisabkeFlg = 0", (now, now+10))
     res = c.fetchall()
     print(len(res))
     for row in res:
         print(row)
         send_channel = client.get_channel(row[1])
         await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
+        c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
 
 #BOTが起動したとき
 @client.event
