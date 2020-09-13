@@ -24,7 +24,7 @@ async def fetch_popdata():
     for row in res:
         print(row)
         send_channel = client.get_channel(row[1])
-        await send_channel.send(row[2] "pop " + str(row[3])[6:])
+        await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
 
 #BOTが起動したとき
 @client.event
