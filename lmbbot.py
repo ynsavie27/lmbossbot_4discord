@@ -138,8 +138,7 @@ async def on_message(message):
             disableflg = 0
 
             #DB書き込み
-            c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)",
-                                          (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
+            c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
 
             for row in c.execute('SELECT * FROM bosspop'):
