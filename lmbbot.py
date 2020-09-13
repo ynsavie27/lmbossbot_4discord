@@ -1,5 +1,6 @@
 import datetime
 import sqlite3
+from discord.ext import tasks
 #discordのライブラリをインポート
 import discord
 #自分のトークンにしてね
@@ -11,6 +12,13 @@ client = discord.Client()
 # DB接続オブジェクトを生成
 conn = sqlite3.connect('lmbbot.sqlite3')
 c = conn.cursor()
+
+@tasks.loop(minutes=1.0)
+async def fetch_popdata():
+    now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
+    await c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
+    for row in c.fetchall():
+        print(row)
 
 #BOTが起動したとき
 @client.event
@@ -141,8 +149,8 @@ async def on_message(message):
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
             conn.commit
 
-            for row in c.execute('SELECT * FROM bosspop'):
-                print(row)
+            # for row in c.execute('SELECT * FROM bosspop'):
+            #     print(row)
             
             conn.close
 
