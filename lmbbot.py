@@ -26,6 +26,7 @@ async def fetch_popdata():
         send_channel = client.get_channel(row[1])
         await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
         c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
+        conn.commit
 
 #BOTが起動したとき
 @client.event
@@ -159,7 +160,7 @@ async def on_message(message):
             for row in c.execute('SELECT * FROM bosspop'):
                 print(row)
             
-            conn.close
+            # conn.close
 
             await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
             #print(str(message.channel.id))
