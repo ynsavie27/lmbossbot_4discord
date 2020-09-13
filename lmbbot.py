@@ -18,7 +18,7 @@ async def fetch_popdata():
     now = datetime.datetime.today()
     now_a10m = now + datetime.timedelta(minutes=10)
     print(now)
-    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (int(nows.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M")))
+    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (int(nows.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M"))))
     res = c.fetchall()
     print(len(res))
     for row in res:
