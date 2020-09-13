@@ -164,7 +164,7 @@ async def on_message(message):
             
             # for row in c.execute('SELECT * FROM bosspop'):
             #     print(row)
-                        
+
             # conn.close
         else:
             return
@@ -172,7 +172,7 @@ async def on_message(message):
     else:
         return
 
-fetch_popdata.start()
+# fetch_popdata.start()
 
 #BOTの起動
 client.run(TOKEN)
