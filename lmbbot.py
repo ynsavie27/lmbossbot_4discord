@@ -18,8 +18,10 @@ async def fetch_popdata():
     now = int(datetime.datetime.today().strftime("%y%m%d%H%M"))
     print(str(now))
     c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time < ? AND MsgSendFlg = 0 AND DisableFlg = 0", (now, now + 10))
-    for row in c.fetchall():
-        print(row)
+    res = c.fetchall()
+    print(str(res))
+    # for row in res:
+    #     print(row)
 
 #BOTが起動したとき
 @client.event
