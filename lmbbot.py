@@ -1,8 +1,8 @@
 import datetime
 import sqlite3
-from discord.ext import tasks
 #discordのライブラリをインポート
 import discord
+from discord.ext import tasks
 #自分のトークンにしてね
 TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.Zh95SnG5-FVQUPy5vz_GeNmFKH0'
 
@@ -161,6 +161,8 @@ async def on_message(message):
         
     else:
         return
+
+tasks.loop.start()
 
 #BOTの起動
 client.run(TOKEN)
