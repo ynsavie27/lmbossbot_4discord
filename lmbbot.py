@@ -23,7 +23,7 @@ async def fetch_popdata():
     for row in res:
         print(row)
         send_channel = client.get_channel(row[1])
-        await send_channel.send(row[2] + 'pop ' + str(row[3])[6:])
+        await send_channel.send('もうすぐ ' + row[2] + ' pop ' + str(row[3])[6:8] + str(row[3])[8:])
         c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
         conn.commit()
     # conn1.close()
@@ -55,73 +55,79 @@ async def on_message(message):
         rand = ''
         bname = s_msg_list[1]
         
-        if bname == 'てきこ':
-            cycle_m = 10
+        if bname == 'てきこ' or bname == 'てっき' or bname == '敵子':
+            cycle_m = 15
             rand = '(起きれば)'
-        elif bname == 'アルフィア':
-            cycle_h = 4
-        elif bname == 'イフリート':
+        elif bname == 'ボスクライン' or bname == 'クライン':
+            cycle_h = 1
+        elif bname == 'ジャイアントワーム' or bname == 'ワーム':
+            cycle_h = 2
+            rand = '(ランダム)'
+        elif bname == 'シャスキー緑' or bname == '緑シャス':
+            cycle_h = 2
+            rand = '(ランダム)'
+        elif bname == 'シャスキー赤' or bname == '赤シャス':
+            cycle_h = 2
+            rand = '(ランダム)'
+        elif bname == 'イフリート' or bname == 'イフ':
+            cycle_h = 2
+            rand = '(ランダム)'
+        elif bname == 'ドレイク西' or bname == '西ドレ' or bname == '49ドレ':
+            cycle_h = 2
+        elif bname == 'ドレイク北' or bname == '北ドレ' or bname == '47ドレ':
+            cycle_h = 2
+        elif bname == 'カスパ' or bname == 'カスパーズ':
+            cycle_h = 2
+        elif bname == '巨大守護アリ' or bname == 'アリ' or bname == '蟻' or bname == 'あり':
             cycle_h = 2
             rand = '(ランダム)'
         elif bname == 'ガーストロード':
             cycle_h = 3
             rand = '(ランダム)'
-        elif bname == 'カーツ':
-            cycle_h = 10
-            rand = '(ランダム)'
-        elif bname == 'カスパ':
-            cycle_h = 2
-        elif bname == '監視者デーモン':
-            cycle_h = 6
-        elif bname == '巨大守護アリ':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == '古代巨人':
-            cycle_h = 5
-            rand = '(ランダム)'
-        elif bname == '山賊の親分':
-            cycle_h = 3
-        elif bname == 'ジャイアントクロコダイル':
-            cycle_h = 3
-        elif bname == 'ジャイアントドレイク':
-            cycle_h = 3
-            rand = '(ランダム)'
-        elif bname == 'ジャイアントワーム':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'シャスキー赤':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'シャスキー緑':
-            cycle_h = 2
-            rand = '(ランダム)'
         elif bname == 'スピリッド':
             cycle_h = 3
             rand = '(ランダム?)'
-        elif bname == 'ダークハイエルダー':
+        elif bname == '山賊の親分' or bname == '親分':
             cycle_h = 3
-        elif bname == 'デスナイト':
-            cycle_h = 7
-            rand = '(ランダム)'
-        elif bname == 'ドッペルゲンガーボス':
-            cycle_h = 4
-            rand = '(ランダム)'
-        elif bname == 'ドレイク西':
-            cycle_h = 2
-        elif bname == 'ドレイク中央':
+        elif bname == 'ダークハイエルダー' or bname == 'エルダー' or bname == 'ハイエルダー':
             cycle_h = 3
-        elif bname == 'ドレイク東':
+        elif bname == 'ジャイアントクロコダイル' or bname == 'クロコ' or bname == 'ワニ':
             cycle_h = 3
-        elif bname == 'フェニックス':
-            cycle_h = 7
-            rand = '(ランダム)'
-        elif bname == 'ボスクライン':
-            cycle_h = 1
         elif bname == 'マーヨ':
             cycle_h = 3
             rand = '(ランダム)'
+        elif bname == 'ドレイク中央' or bname == '中央ドレ' or bname == '46ドレ':
+            cycle_h = 3
+        elif bname == 'ドレイク東' or bname == '48ドレ' or bname == '東ドレ':
+            cycle_h = 3
+        elif bname == '疾風の巨大ドレイク' or bname == 'デカドレ' or bname == '大ドレ':
+            cycle_h = 3
+            rand = '(ランダム)'
+        elif bname == 'アルフィア':
+            cycle_h = 4
+        elif bname == 'ドッペルゲンガーボス' or bname == 'ドッペ' or bname == 'ドッペボス':
+            cycle_h = 4
+            rand = '(ランダム)'
+        elif bname == '古代巨人' or bname == 'ジャイアント' or bname == 'エンシェントジャイアント':
+            cycle_h = 5
+            rand = '(ランダム)'
+        elif bname == 'マンボラビット' or bname == 'マンボ':
+            cycle_h = 6
+        elif bname == '深淵の主':
+            cycle_h = 6
+        elif bname == '監視者デーモン' or bname == '青デーモン':
+            cycle_h = 6
+        elif bname == 'デスナイト' or bname == 'DK':
+            cycle_h = 7
+            rand = '(ランダム)'
+        elif bname == 'フェニックス' or bname == 'フェニ':
+            cycle_h = 7
+            rand = '(ランダム)'
         elif bname == 'リカント':
             cycle_h = 8
+            rand = '(ランダム)'
+        elif bname == 'カーツ':
+            cycle_h = 10
             rand = '(ランダム)'
         else:
             await message.channel.send('不明なボス名')
