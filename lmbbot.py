@@ -162,7 +162,7 @@ async def on_message(message):
     else:
         return
 
-tasks.loop.start()
+loop.start()
 
 #BOTの起動
 client.run(TOKEN)
