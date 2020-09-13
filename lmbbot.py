@@ -157,11 +157,11 @@ async def on_message(message):
 
             #DB書き込み
             c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
-            # conn.commit()
-            try:
-                conn.commit()
-            except sqlite3.Error as er:
-                print(er.message)
+            conn.commit()
+            # try:
+            #     conn.commit()
+            # except sqlite3.Error as er:
+            #     print(er.message)
 
             # for row in c.execute('SELECT * FROM bosspop'):
             #     print(row)
