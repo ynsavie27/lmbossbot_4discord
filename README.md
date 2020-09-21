@@ -1,4 +1,4 @@
-# discord用のLineageMボス管理BOTのテスト
+# discord用のLineageMボス管理BOT
 [discord.py公式リファレンス](https://discordpy.readthedocs.io/en/latest/index.html)
 discordでのヘルプは[こちら](https://discord.gg/7kKddVA) のサーバーまで
 
