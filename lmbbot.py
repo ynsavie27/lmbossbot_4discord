@@ -1,24 +1,25 @@
+import settings
 import datetime
 import sqlite3
 #discordのライブラリをインポート
 import discord
 from discord.ext import tasks
-#自分のトークンにしてね
-TOKEN = 'NzQ5NDkzNjMzNTQ3NTAxNTY5.X0syVw.Zh95SnG5-FVQUPy5vz_GeNmFKH0'
 
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
 
 # # DB接続オブジェクトを生成
-conn = sqlite3.connect('/dscbot/lmbossbot_4discord/lmbbot.sqlite3')
+conn = sqlite3.connect('./lmbbot.sqlite3')
 c = conn.cursor()
 
-@tasks.loop(minutes=1.0)
+loop_sec = settings.LOOP_INTVL_SEC
+
+@tasks.loop(seconds=loop_sec)
 async def fetch_popdata():
     now = datetime.datetime.today()
     now_a10m = now + datetime.timedelta(minutes=10)
     print(now)
-    c.execute("SELECT * FROM bosspop where ? <= Pop_Time AND Pop_Time <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (int(now.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M"))))
+    c.execute("SELECT * FROM bosspop where ? <= PopTime AND PopTime <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (int(now.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M"))))
     res = c.fetchall()
     print(len(res))
     for row in res:
@@ -27,7 +28,6 @@ async def fetch_popdata():
         await send_channel.send('もうすぐ ' + row[2] + ' pop ' + str(row[3])[6:8] + ':' + str(row[3])[8:])
         c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
         conn.commit()
-    # conn1.close()
 
 #BOTが起動したとき
 @client.event
@@ -157,13 +157,14 @@ async def on_message(message):
 
             ch_id = message.channel.id
             boss_id = bname
+            end_time = int(edaytime.strftime("%y%m%d%H%M"))
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
             addtext = ""
             msgsendflg = 0
             disableflg = 0
 
             #DB書き込み
-            c.execute("INSERT INTO bosspop(Ch_ID, Boss_ID, Pop_Time, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?)", (ch_id, boss_id, pop_time, addtext, msgsendflg, disableflg))
+            c.execute("INSERT INTO bosspop(ChID, BossID, EndTime, PopTime, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?, ?)", (ch_id, boss_id, end_time, pop_time, addtext, msgsendflg, disableflg))
             conn.commit()
             # try:
             #     conn.commit()
@@ -173,7 +174,7 @@ async def on_message(message):
             # for row in c.execute('SELECT * FROM bosspop'):
             #     print(row)
             
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%Y/%m/%d %H:%M") + rand)
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand)
             #print(str(message.channel.id))
 
             # conn.close()
@@ -187,4 +188,4 @@ async def on_message(message):
 fetch_popdata.start()
 
 #BOTの起動
-client.run(TOKEN)
+client.run(settings.TOKEN)
