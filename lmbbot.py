@@ -89,7 +89,7 @@ async def fetch_popdata():
         else:
             # マスタ取得成功
             # 送信メッセージ構築
-            msg_txt = 'もうすぐ ' + bossinfo['name'][0] + ' がPop！ ' + str(row[4])[6:8] + ':' + str(row[4])[8:]
+            msg_txt = '【ボス予告】もうすぐ ' + bossinfo['name'][0] + ' がPOP! ' + str(row[4])[6:8] + ':' + str(row[4])[8:]
             if bossinfo['pop_rate'] < 100:
                 msg_txt += '(ランダム)'
             if bossinfo['note'] != '':
@@ -184,7 +184,7 @@ async def on_message(message):
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
             addtext = ''
             if len(s_msg_list) > 3:
-                addtext = ' 備考:' + s_msg_list[3].strip()
+                addtext = s_msg_list[3].strip()
 
             # bosspopテーブルに書き込み
             c.execute(
@@ -197,8 +197,11 @@ async def on_message(message):
             # except sqlite3.Error as er:
             #     print(er.message)
             
+            addstr = ''
+            if len(addtext) > 0:
+                addstr = ' 備考:' + addtext
             # 報告元チャンネルにメッセージ返信
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand + note + addtext)
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand + note + addstr)
             #print(str(message.channel.id))
         else:
             return
