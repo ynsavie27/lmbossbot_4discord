@@ -1,142 +1,159 @@
 import settings
 import datetime
 import sqlite3
-#discordのライブラリをインポート
+import json
+from collections import OrderedDict
+
+# discordのライブラリをインポート
 import discord
 from discord.ext import tasks
 
-# 接続に必要なオブジェクトを作る
+# 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-# # DB接続オブジェクトを生成
+# # bot管理チャンネルオブジェクト用変数を用意
+# ctrl_ch = None
+
+# DB接続オブジェクトを生成
 conn = sqlite3.connect('./lmbbot.sqlite3')
 c = conn.cursor()
 
-loop_sec = settings.LOOP_INTVL_SEC
+# ボスマスタJSONファイルを読み込み
+with open('./boss_mst.json', 'r', encoding='utf-8') as f:
+    boss_mst = json.load(f, object_pairs_hook=OrderedDict)
 
-@tasks.loop(seconds=loop_sec)
+### ボスマスタレイアウト
+# boss_mst[ボスIDのテキスト]={
+#     'intvl_min':分数,
+#     'pop_time':時刻'YYMM'のリスト,
+#     'duration_min':分数,
+#     'pop_rate':数値(0-100%),
+#     'pop_place':テキスト,
+#     'name':ボス名のリスト,
+#     'note':テキスト,
+#     'disable_flg':数値(0以外なら無効)
+# }
+
+# ボス名からボスID取得用変数を生成
+# key:ボス名、値:ボスIDの辞書
+boss_name2id = {}
+for bid in boss_mst.keys():
+    bname_list = boss_mst[bid].get('name')
+    for bname in bname_list:
+        boss_name2id[bname] = bid
+
+@tasks.loop(seconds=settings.LOOP_INTVL_SEC)
 async def fetch_popdata():
+    # bot管理チャンネルオブジェクトを取得
+    ctrl_ch = client.get_channel(settings.CTRL_CHANNEL_ID)
+
+    # POPデータ取得期間を計算
     now = datetime.datetime.today()
     now_a10m = now + datetime.timedelta(minutes=10)
-    print(now)
-    c.execute("SELECT * FROM bosspop where ? <= PopTime AND PopTime <= ? AND MsgSendFlg = 0 AND DisableFlg = 0", (int(now.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M"))))
-    res = c.fetchall()
-    print(len(res))
-    for row in res:
-        print(row)
-        send_channel = client.get_channel(row[1])
-        await send_channel.send('もうすぐ ' + row[2] + ' pop ' + str(row[3])[6:8] + ':' + str(row[3])[8:])
-        c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
-        conn.commit()
+    # print(now)
 
-#BOTが起動したとき
+    ### bosspopテーブルレイアウト
+    # [0]No_ INTEGER, [1]ChID INTEGER, [2]BossID TEXT,
+    # [3]EndTime INTEGER, [4]PopTime INTEGER, [5]AddText TEXT,
+    # [6]MsgSendFlg INTEGER, [7]DisableFlg INTEGER
+
+    #POPデータを取得
+    c.execute(
+        "SELECT * FROM bosspop where ? <= PopTime AND PopTime <= ? AND MsgSendFlg = 0 AND DisableFlg = 0",
+        (int(now.strftime("%y%m%d%H%M")), int(now_a10m.strftime("%y%m%d%H%M")))
+    )
+
+    res = c.fetchall()
+    # print(len(res))
+    for row in res:
+        # print(row)
+
+        if settings.DEBUG:
+            # 管理ChへMsg送信
+            await ctrl_ch.send('POPデータ取得: ' + str(row))
+
+        # ボスマスタからボス情報取得
+        bossinfo = boss_mst.get(row[2])
+
+        # ボスマスタ取得成否判定
+        if bossinfo == None:
+            # マスタ取得失敗
+            errmsg = 'RowNo.' + str(row[0]) + ':BossID[' + row[2] + '] is None.'
+            print(errmsg)
+            # 管理ChへMsg送信
+            await ctrl_ch.send(errmsg)
+
+            # 元レコードに無効フラグを立てる
+            c.execute("UPDATE bosspop SET DisableFlg = 3 WHERE No_ = ?", (row[0],))
+            conn.commit()
+        else:
+            # マスタ取得成功
+            # 送信メッセージ構築
+            msg_txt = 'もうすぐ ' + bossinfo['name'][0] + ' がPop！ ' + str(row[4])[6:8] + ':' + str(row[4])[8:]
+            if bossinfo['pop_rate'] < 100:
+                msg_txt += '(ランダム)'
+            if bossinfo['note'] != '':
+                msg_txt += bossinfo['note']
+            if bossinfo['pop_place'] != '':
+                msg_txt += ' @' + bossinfo['pop_place']
+            if row[5] != '':
+                msg_txt += '\n備考:' + row[5]
+            
+            # 送信先チャンネルオブジェクトを取得
+            send_channel = client.get_channel(row[1])
+            # POP予告メッセージ送信
+            await send_channel.send(msg_txt)
+
+            # 当該メッセージ元レコードの送信フラグを立てる
+            c.execute("UPDATE bosspop SET MsgSendFlg = 1 WHERE No_ = ?", (row[0],))
+            conn.commit()
+
+            if settings.DEBUG:
+                # 管理ChへMsg送信
+                await ctrl_ch.send('sendmsg to [' + send_channel.name + ']: \n「' + msg_txt + '」')
+
+# botが起動したとき
 @client.event
 async def on_ready():
-    # c.execute("SELECT * FROM bosspop")
-    # ress = c.fetchall()
+    # bot管理チャンネルオブジェクトを取得
+    ctrl_ch = client.get_channel(settings.CTRL_CHANNEL_ID)
     print('寝てた')
+    # 管理ChへMsg送信
+    await ctrl_ch.send('bot start')
 
-#メッセージを受け取ったとき
+# メッセージを受け取ったとき
 @client.event
 async def on_message(message):
     # Botだったら無視
     if message.author.bot:
         return
-#    if message.content == '/hello':
-#        await message.channel.send('hello')
 
     # コマンド解釈
-    s_msg_list = message.content.split(' ') #半角スペースでメッセージを分割しリストに格納
-    if len(s_msg_list) < 3:
+    # 先頭文字判定
+    if message.content[0] != '/':
         return
     
+    # 半角スペースでメッセージを分割しリストに格納
+    s_msg_list = message.content.split(' ')
+
+    # コマンド別処理
     if s_msg_list[0] == '/end':
-        cycle_h = 0
-        cycle_m = 0
-        rand = ''
+    # end報告
+
+        # 引き数不足なら無視
+        if len(s_msg_list) < 3:
+            return
+
+        # ボス名チェック・ボスID取得
         bname = s_msg_list[1]
-        
-        if bname == 'てきこ' or bname == 'てっき' or bname == '敵子':
-            cycle_m = 15
-            rand = '(起きれば)'
-        elif bname == 'ボスクライン' or bname == 'クライン':
-            cycle_h = 1
-        elif bname == 'ジャイアントワーム' or bname == 'ワーム':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'シャスキー緑' or bname == '緑シャス':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'シャスキー赤' or bname == '赤シャス':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'イフリート' or bname == 'イフ':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'ドレイク西' or bname == '西ドレ' or bname == '49ドレ':
-            cycle_h = 2
-        elif bname == 'ドレイク北' or bname == '北ドレ' or bname == '47ドレ':
-            cycle_h = 2
-        elif bname == 'カスパ' or bname == 'カスパーズ':
-            cycle_h = 2
-        elif bname == '巨大守護アリ' or bname == 'アリ' or bname == '蟻' or bname == 'あり':
-            cycle_h = 2
-            rand = '(ランダム)'
-        elif bname == 'ガーストロード':
-            cycle_h = 3
-            rand = '(ランダム)'
-        elif bname == 'スピリッド':
-            cycle_h = 3
-            rand = '(ランダム?)'
-        elif bname == '山賊の親分' or bname == '親分':
-            cycle_h = 3
-        elif bname == 'ダークハイエルダー' or bname == 'エルダー' or bname == 'ハイエルダー':
-            cycle_h = 3
-        elif bname == 'ジャイアントクロコダイル' or bname == 'クロコ' or bname == 'ワニ':
-            cycle_h = 3
-        elif bname == 'マーヨ':
-            cycle_h = 3
-            rand = '(ランダム)'
-        elif bname == 'ドレイク中央' or bname == '中央ドレ' or bname == '46ドレ':
-            cycle_h = 3
-        elif bname == 'ドレイク東' or bname == '48ドレ' or bname == '東ドレ':
-            cycle_h = 3
-        elif bname == '疾風の巨大ドレイク' or bname == 'デカドレ' or bname == '大ドレ':
-            cycle_h = 3
-            rand = '(ランダム)'
-        elif bname == 'アルフィア':
-            cycle_h = 4
-        elif bname == 'ドッペルゲンガーボス' or bname == 'ドッペ' or bname == 'ドッペボス':
-            cycle_h = 4
-            rand = '(ランダム)'
-        elif bname == '古代巨人' or bname == 'ジャイアント' or bname == 'エンシェントジャイアント':
-            cycle_h = 5
-            rand = '(ランダム)'
-        elif bname == 'マンボラビット' or bname == 'マンボ':
-            cycle_h = 6
-        elif bname == '深淵の主':
-            cycle_h = 6
-        elif bname == '監視者デーモン' or bname == '青デーモン':
-            cycle_h = 6
-        elif bname == 'デスナイト' or bname == 'DK':
-            cycle_h = 7
-            rand = '(ランダム)'
-        elif bname == 'フェニックス' or bname == 'フェニ':
-            cycle_h = 7
-            rand = '(ランダム)'
-        elif bname == 'リカント':
-            cycle_h = 8
-            rand = '(ランダム)'
-        elif bname == 'カーツ':
-            cycle_h = 10
-            rand = '(ランダム)'
-        else:
+        bid = boss_name2id.get(bname)
+        if bid == None:
             await message.channel.send('不明なボス名')
             return
-        
+
+        # 時刻形式チェック（"YYMM"形式か）
         etimes = s_msg_list[2]
         errmsg = '不正な時刻指定'
-        
         if len(etimes) == 4:
             if etimes.isdecimal():
                 ehour = int(etimes[:2])
@@ -147,45 +164,49 @@ async def on_message(message):
                     if tdy < edaytime:
                         edaytime = edaytime + datetime.timedelta(days=-1)
                     errmsg = ''
-        
         if len(errmsg) > 0:
             await message.channel.send(errmsg)
             return
         
-        if cycle_h > 0 or cycle_m > 0:
-            poptime = edaytime + datetime.timedelta(hours=cycle_h, minutes=cycle_m)
+        # ボスマスタから各種情報取得
+        boss_info = boss_mst[bid]
+        intvl_h = boss_info['intvl_min'] // 60
+        intvl_m = boss_info['intvl_min'] % 60
+        rand = ''
+        if boss_info['pop_rate'] < 100:
+            rand = '(ランダム)'
+        note = boss_info['note']
 
+        if intvl_h > 0 or intvl_m > 0:
+            poptime = edaytime + datetime.timedelta(hours=intvl_h, minutes=intvl_m)
             ch_id = message.channel.id
-            boss_id = bname
             end_time = int(edaytime.strftime("%y%m%d%H%M"))
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
-            addtext = ""
-            msgsendflg = 0
-            disableflg = 0
+            addtext = ''
+            if len(s_msg_list) > 3:
+                addtext = s_msg_list[3]
 
-            #DB書き込み
-            c.execute("INSERT INTO bosspop(ChID, BossID, EndTime, PopTime, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?, ?)", (ch_id, boss_id, end_time, pop_time, addtext, msgsendflg, disableflg))
+            # bosspopテーブルに書き込み
+            c.execute(
+                "INSERT INTO bosspop(ChID, BossID, EndTime, PopTime, AddText, MsgSendFlg, DisableFlg) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (ch_id, bid, end_time, pop_time, addtext, 0, 0)
+            )
             conn.commit()
             # try:
             #     conn.commit()
             # except sqlite3.Error as er:
             #     print(er.message)
-
-            # for row in c.execute('SELECT * FROM bosspop'):
-            #     print(row)
             
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand)
+            # 報告元チャンネルにメッセージ返信
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand + note + ' 備考:' + addtext)
             #print(str(message.channel.id))
-
-            # conn.close()
-
         else:
             return
-        
     else:
         return
 
+# POPデータ取得ループ処理を開始
 fetch_popdata.start()
 
-#BOTの起動
+# botの起動
 client.run(settings.TOKEN)

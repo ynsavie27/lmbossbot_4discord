@@ -1,0 +1,516 @@
+{
+    "A002": {
+        "intvl_min": 600,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "話せる島の方の地図の12黒騎士団の船着場",
+        "name": [
+            "カーツ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A003": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "14オーク集落",
+        "name": [
+            "ガーストロード",
+            "GL"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A004": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "68の上行ったところ",
+        "name": [
+            "四賢者",
+            "カスパーズ",
+            "カスパ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A005": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "12.52の間程度",
+        "name": [
+            "スピリッド",
+            "スピ"
+        ],
+        "note": "ランダム？",
+        "disable_flg": 0
+    },
+    "A007": {
+        "intvl_min": 480,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "6エルフの森の村出て右下ウェアウルフゾーン",
+        "name": [
+            "リカント"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A008": {
+        "intvl_min": 420,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "28亡者の墓",
+        "name": [
+            "デスナイト",
+            "DK"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A009": {
+        "intvl_min": 240,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "65の下辺り",
+        "name": [
+            "アルフィア",
+            "アル"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A010": {
+        "intvl_min": 240,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "23ハイネの右上、61鏡の森の右下辺り",
+        "name": [
+            "ドッペルゲンガーボス",
+            "ドッペボス",
+            "ドッペ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A011": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "46竜のダンジョン入口中央辺り",
+        "name": [
+            "ダークハイエルダー",
+            "ハイエル",
+            "ハイエルダー",
+            "エルダー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A012": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "27ロサス島",
+        "name": [
+            "ジャイアントクロコダイル",
+            "クロコ",
+            "ワニ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A013": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "46DV中央",
+        "name": [
+            "ドレイク中央",
+            "中央ドレ",
+            "中ドレ",
+            "46ドレ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A014": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "47DV北",
+        "name": [
+            "ドレイク北",
+            "北ドレ",
+            "47ドレ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A015": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "48DV東",
+        "name": [
+            "ドレイク東",
+            "東ドレ",
+            "48ドレ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A016": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "49DV西",
+        "name": [
+            "ドレイク西",
+            "西ドレ",
+            "49ドレ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A017": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "34山賊の巣窟",
+        "name": [
+            "山賊の親分",
+            "親分"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A018": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "50竜の渓谷三又路",
+        "name": [
+            "疾風の巨大ドレイク",
+            "デカドレ",
+            "大ドレ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A019": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "45火山頂上、ダイヤ飛び可能",
+        "name": [
+            "憤怒の真イフリート",
+            "イフリート",
+            "イフ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A020": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "8エルモア前哨基地",
+        "name": [
+            "狂風のシャスキー(緑)",
+            "シャスキー緑",
+            "緑シャス"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A021": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "地図上8.9の間の下の雪が丸くなってるところ",
+        "name": [
+            "疾風のシャスキー(赤)",
+            "シャスキー赤",
+            "赤シャス"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A022": {
+        "intvl_min": 300,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "70黄昏の山脈奥",
+        "name": [
+            "古代巨人",
+            "AG",
+            "ジャイアント",
+            "エンシェントジャイアント"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A023": {
+        "intvl_min": 180,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "63雪山",
+        "name": [
+            "冷酷な大足のマーヨ",
+            "マーヨ",
+            "マヨ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A024": {
+        "intvl_min": 420,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "45火山",
+        "name": [
+            "火炎のフェニックス",
+            "フェニックス",
+            "フェニ"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A031": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "古代精霊の墓",
+        "name": [
+            "マンボラビット",
+            "マンボ"
+        ],
+        "note": "ランダム？",
+        "disable_flg": 0
+    },
+    "A032": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "古代精霊の墓",
+        "name": [
+            "深淵の主"
+        ],
+        "note": "ランダム？",
+        "disable_flg": 0
+    },
+    "A033": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "象牙7",
+        "name": [
+            "監視者デーモン",
+            "青デーモン",
+            "青閣下"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "D001": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "3蟻ダンジョン4Fの5箇所どれか、ダイヤ飛び可能",
+        "name": [
+            "巨大守護アリ",
+            "アリ",
+            "蟻",
+            "あり"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "D002": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "HC4F真ん中辺り",
+        "name": [
+            "ジャイアントワーム",
+            "ワーム"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "D003": {
+        "intvl_min": 60,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "GC1F",
+        "name": [
+            "ボスクライン",
+            "クライン",
+            "ファウスト"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S101": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢1階",
+        "name": [
+            "1Fリーパー",
+            "1リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S102": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢2階",
+        "name": [
+            "2Fリーパー",
+            "2リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S103": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢3階",
+        "name": [
+            "3Fリーパー",
+            "3リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S104": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢4階",
+        "name": [
+            "4Fリーパー",
+            "4リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S105": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢5階",
+        "name": [
+            "5Fリーパー",
+            "5リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S106": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢6階",
+        "name": [
+            "6Fリーパー",
+            "6リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S107": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢7階",
+        "name": [
+            "7Fリーパー",
+            "7リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S108": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢8階",
+        "name": [
+            "8Fリーパー",
+            "8リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S109": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢9階",
+        "name": [
+            "9Fリーパー",
+            "9リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "Z999": {
+        "intvl_min": 15,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "メイドカフェの上",
+        "name": [
+            "てきこ",
+            "てっき",
+            "敵子"
+        ],
+        "note": "起きるかな？",
+        "disable_flg": 0
+    }
+}
