@@ -184,7 +184,7 @@ async def on_message(message):
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
             addtext = ''
             if len(s_msg_list) > 3:
-                addtext = s_msg_list[3]
+                addtext = ' 備考:' + s_msg_list[3].strip()
 
             # bosspopテーブルに書き込み
             c.execute(
@@ -198,7 +198,7 @@ async def on_message(message):
             #     print(er.message)
             
             # 報告元チャンネルにメッセージ返信
-            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand + note + ' 備考:' + addtext)
+            await message.channel.send(bname + ' Next Pop ' + poptime.strftime("%m/%d %H:%M") + rand + note + addtext)
             #print(str(message.channel.id))
         else:
             return
