@@ -7,5 +7,5 @@ discordでのヘルプは[こちら](https://discord.gg/7kKddVA) のサーバー
 > 2. BOTを開発するフォルダにこのリポジトリをクローン
 > 3. コマンドプロンプトで`pip3 install -r requirements.txt`と入力してライブラリをインストール
 > 4. settings.py のトークンを自分のBOTのトークンにする
-> 5. `python3 lmbbot.py`で起動
+> 5. `python3 botcore.py`で起動
 > コンソールに`寝てた`と出たら成功です。
