@@ -74,6 +74,25 @@ class LmBBot(commands.Cog):
 #    async def ping(self, ctx):
 #        await ctx.send('pong!')
     
+
+    # コマンド定義cl(メンテ後DataClear)
+    @commands.command()
+    async def cl(self, ctx):
+        # 同一チャンネルの既存の有効データを無効化(上書きフラグ=9)
+        c.execute(
+            "UPDATE bosspop SET DisableFlg = 9 WHERE ChID = ? AND MsgSendFlg = 0 AND DisableFlg = 0",
+            (ctx.channel.id)
+        )
+        # pass後pop予測データも無効化
+        c.execute(
+            "UPDATE newestpop SET DisableFlg = 9 WHERE ChID = ?",
+            (ctx.channel.id)
+        )
+        # DBコミット
+        conn.commit()
+        # Msg送信
+        await ctx.send('ボスPOPデータをリセットしました。')
+
     # コマンド定義end
     @commands.command()
     async def end(self, ctx, arg1='', arg2='', arg3=''):
