@@ -30,7 +30,7 @@
         "intvl_min": 120,
         "pop_time": [],
         "duration_min": 0,
-        "pop_rate": 50,
+        "pop_rate": 100,
         "pop_place": "72の上に行ったところ",
         "name": [
             "四賢者",
@@ -295,7 +295,7 @@
         "disable_flg": 0
     },
     "A024": {
-        "intvl_min": 420,
+        "intvl_min": 405,
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
@@ -351,7 +351,7 @@
         "intvl_min": 120,
         "pop_time": [],
         "duration_min": 0,
-        "pop_rate": 50,
+        "pop_rate": 100,
         "pop_place": "03蟻ダンジョン4Fの5箇所どれか、ダイヤ飛び可能",
         "name": [
             "巨大守護アリ",
