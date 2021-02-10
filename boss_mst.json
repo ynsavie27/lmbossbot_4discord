@@ -4,7 +4,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "話せる島の方の地図の12黒騎士団の船着場",
+        "pop_place": "話せる島の12黒騎士団の船着場",
         "name": [
             "カーツ"
         ],
@@ -19,7 +19,9 @@
         "pop_place": "14オーク集落",
         "name": [
             "ガーストロード",
-            "GL"
+            "ガースト",
+            "GL",
+            "gl"
         ],
         "note": "",
         "disable_flg": 0
@@ -29,7 +31,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "68の上行ったところ",
+        "pop_place": "72の上に行ったところ",
         "name": [
             "四賢者",
             "カスパーズ",
@@ -43,7 +45,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "12.52の間程度",
+        "pop_place": "12と55の間",
         "name": [
             "スピリッド",
             "スピ"
@@ -56,7 +58,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "6エルフの森の村出て右下ウェアウルフゾーン",
+        "pop_place": "06エルフの森の村出て右下ウェアウルフゾーン",
         "name": [
             "リカント"
         ],
@@ -71,7 +73,8 @@
         "pop_place": "28亡者の墓",
         "name": [
             "デスナイト",
-            "DK"
+            "DK",
+            "dk"
         ],
         "note": "",
         "disable_flg": 0
@@ -81,10 +84,12 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "65の下辺り",
+        "pop_place": "61の上、69の下辺り",
         "name": [
             "アルフィア",
-            "アル"
+            "蜘蛛",
+            "くも",
+            "クモ"
         ],
         "note": "",
         "disable_flg": 0
@@ -94,7 +99,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "23ハイネの右上、61鏡の森の右下辺り",
+        "pop_place": "23ハイネの右上、64鏡の森の右下辺り",
         "name": [
             "ドッペルゲンガーボス",
             "ドッペボス",
@@ -108,12 +113,12 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "46竜のダンジョン入口中央辺り",
+        "pop_place": "DV",
         "name": [
             "ダークハイエルダー",
             "ハイエル",
             "ハイエルダー",
-            "エルダー"
+            "dhe"
         ],
         "note": "",
         "disable_flg": 0
@@ -137,12 +142,12 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "46DV中央",
+        "pop_place": "49DV中央",
         "name": [
             "ドレイク中央",
             "中央ドレ",
             "中ドレ",
-            "46ドレ"
+            "49ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -152,11 +157,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "47DV北",
+        "pop_place": "50DV北",
         "name": [
             "ドレイク北",
             "北ドレ",
-            "47ドレ"
+            "50ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -166,11 +171,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "48DV東",
+        "pop_place": "51DV東",
         "name": [
             "ドレイク東",
             "東ドレ",
-            "48ドレ"
+            "51ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -180,11 +185,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "49DV西",
+        "pop_place": "52DV西",
         "name": [
             "ドレイク西",
             "西ドレ",
-            "49ドレ"
+            "52ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -194,7 +199,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "34山賊の巣窟",
+        "pop_place": "36山賊の巣窟",
         "name": [
             "山賊の親分",
             "親分"
@@ -207,10 +212,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "50竜の渓谷三又路",
+        "pop_place": "53竜の渓谷三又路",
         "name": [
             "疾風の巨大ドレイク",
             "デカドレ",
+            "巨大ドレ",
             "大ドレ"
         ],
         "note": "",
@@ -221,7 +227,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "45火山頂上、ダイヤ飛び可能",
+        "pop_place": "48火山頂上、ダイヤ飛び可能",
         "name": [
             "憤怒の真イフリート",
             "イフリート",
@@ -235,7 +241,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "8エルモア前哨基地",
+        "pop_place": "08エルモア前哨基地",
         "name": [
             "狂風のシャスキー(緑)",
             "シャスキー緑",
@@ -249,7 +255,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "地図上8.9の間の下の雪が丸くなってるところ",
+        "pop_place": "09の下の雪が丸くなってるところ",
         "name": [
             "疾風のシャスキー(赤)",
             "シャスキー赤",
@@ -263,10 +269,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "70黄昏の山脈奥",
+        "pop_place": "74黄昏の山脈奥",
         "name": [
             "古代巨人",
             "AG",
+            "ag",
             "ジャイアント",
             "エンシェントジャイアント"
         ],
@@ -278,7 +285,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "63雪山",
+        "pop_place": "66雪壁",
         "name": [
             "冷酷な大足のマーヨ",
             "マーヨ",
@@ -292,7 +299,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "45火山",
+        "pop_place": "48火山頂上、ダイヤ飛び可能",
         "name": [
             "火炎のフェニックス",
             "フェニックス",
@@ -331,7 +338,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "象牙7",
+        "pop_place": "象牙7F",
         "name": [
             "監視者デーモン",
             "青デーモン",
@@ -345,7 +352,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "3蟻ダンジョン4Fの5箇所どれか、ダイヤ飛び可能",
+        "pop_place": "03蟻ダンジョン4Fの5箇所どれか、ダイヤ飛び可能",
         "name": [
             "巨大守護アリ",
             "アリ",
@@ -497,20 +504,6 @@
             "9リーパー"
         ],
         "note": "",
-        "disable_flg": 0
-    },
-    "Z999": {
-        "intvl_min": 15,
-        "pop_time": [],
-        "duration_min": 0,
-        "pop_rate": 50,
-        "pop_place": "メイドカフェの上",
-        "name": [
-            "てきこ",
-            "てっき",
-            "敵子"
-        ],
-        "note": "起きるかな？",
         "disable_flg": 0
     }
 }
