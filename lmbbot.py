@@ -112,7 +112,7 @@ class LmBBot(commands.Cog):
         rand = ''
         if boss_info['pop_rate'] < 100:
             rand = '(ランダム)'
-        note = boss_info['note']
+        note = str(boss_info['note'])
         
         if intvl_h > 0 or intvl_m > 0:
             poptime = edaytime + datetime.timedelta(hours=intvl_h, minutes=intvl_m)
