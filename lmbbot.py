@@ -74,6 +74,36 @@ class LmBBot(commands.Cog):
 #    async def ping(self, ctx):
 #        await ctx.send('pong!')
 
+    # コマンド定義next
+    @commands.command()
+    async def next(self, ctx):
+        ch_id = ctx.channel.id
+        # await ctx.send(ch_id)
+        # 同一チャンネルの既存の未送信・有効データを取得(POP時刻の昇順)
+        c.execute(
+            "SELECT * FROM bosspop WHERE ChID = ? AND MsgSendFlg = 0 AND DisableFlg = 0 ORDER BY PopTime",
+            (ch_id, )
+        )
+        # 取得件数判定
+        mtext = ''
+        res = c.fetchall()
+        # print(res)
+        if len(res) < 1:
+            # 既存データがなければ、無い旨をメッセージセット
+            mtext += 'Nothing Next Pop Data.'
+        else:
+            mtext += 'Next Pop...'
+            # 既存データがあればメッセージ成型
+            for row in res:
+                boss_info = self.boss_mst[row[2]]   # ボスマスタからIDのボス情報を取得
+                bname = boss_info['name'][0]        # ボス名
+                # poptime_i = row[4] % 10000          # POP時分(INT型)
+                poptime_s = str(row[4])[6:]       # POP時分(文字列)
+                mtext += '\n' + poptime_s + ' ' + bname  
+                if len(row[5]) > 0:
+                    mtext += ' 備考:' + row[5]      # 備考
+        await ctx.send(mtext)
+
     # コマンド定義end
     @commands.command()
     async def end(self, ctx, arg1='', arg2='', arg3=''):
@@ -116,7 +146,7 @@ class LmBBot(commands.Cog):
         
         if intvl_h > 0 or intvl_m > 0:
             poptime = edaytime + datetime.timedelta(hours=intvl_h, minutes=intvl_m)
-            ch_id = ctx.channel.id
+            ch_id = int(ctx.channel.id)
             end_time = int(edaytime.strftime("%y%m%d%H%M"))
             pop_time = int(poptime.strftime("%y%m%d%H%M"))
             addtext = arg3.strip()
@@ -178,15 +208,16 @@ class LmBBot(commands.Cog):
     # コマンド定義reset(メンテ後reset)
     @commands.command()
     async def reset(self, ctx, arg1=''):
+        ch_id = int(ctx.channel.id)
         # 同一チャンネルの既存の有効データを無効化(上書きフラグ=9)
         c.execute(
             "UPDATE bosspop SET DisableFlg = 9 WHERE ChID = ? AND MsgSendFlg = 0 AND DisableFlg = 0",
-            (ctx.channel.id,)
+            (ch_id,)
         )
         # pass後pop予測データも無効化
         c.execute(
             "UPDATE newestpop SET DisableFlg = 9 WHERE ChID = ?",
-            (ctx.channel.id,)
+            (ch_id,)
         )
         # DBコミット
         conn.commit()
