@@ -74,6 +74,34 @@ class LmBBot(commands.Cog):
 #    async def ping(self, ctx):
 #        await ctx.send('pong!')
 
+   # コマンド定義last
+    @commands.command()
+    async def last(self, ctx):
+        ch_id = ctx.channel.id
+        # 同一チャンネルの既存の有効データを取得(END時刻の降順)
+        c.execute(
+            "SELECT BossID, MAX(EndTime) as MaxETime, AddText FROM bosspop WHERE ChID = ? AND DisableFlg = 0 GROUP BY ChID, BossID ORDER BY MaxETime",
+            (ch_id, )
+        )
+
+        mtext = ''
+        # 取得件数判定
+        res = c.fetchall()
+        if len(res) < 1:
+            # データがなければ、無い旨をメッセージセット
+            mtext += 'Nothing, Last Pop Data.'
+        else:
+            mtext += 'Last End(through)...'
+            # データがあればメッセージ成型
+            for row in res:
+                boss_info = self.boss_mst[row[0]]   # ボスマスタからIDのボス情報を取得
+                bname = boss_info['name'][0]        # ボス名
+                enddtime_s = str(row[1])[2:]        # END年月時分(文字列)
+                mtext += '\n' + enddtime_s[:2] + '/' + enddtime_s[2:4] + ' ' + enddtime_s[4:6] + ':' + enddtime_s[6:] + ' ' + bname  
+                if len(row[2]) > 0:
+                    mtext += ' 備考:' + row[2]      # 備考
+        await ctx.send(mtext)
+
     # コマンド定義next
     @commands.command()
     async def next(self, ctx):
@@ -84,22 +112,23 @@ class LmBBot(commands.Cog):
             "SELECT * FROM bosspop WHERE ChID = ? AND MsgSendFlg = 0 AND DisableFlg = 0 ORDER BY PopTime",
             (ch_id, )
         )
-        # 取得件数判定
+
         mtext = ''
+        # 取得件数判定
         res = c.fetchall()
         # print(res)
         if len(res) < 1:
-            # 既存データがなければ、無い旨をメッセージセット
-            mtext += 'Nothing Next Pop Data.'
+            # データがなければ、無い旨をメッセージセット
+            mtext += 'Nothing, Next Pop Data.'
         else:
             mtext += 'Next Pop...'
-            # 既存データがあればメッセージ成型
+            # データがあればメッセージ成型
             for row in res:
                 boss_info = self.boss_mst[row[2]]   # ボスマスタからIDのボス情報を取得
                 bname = boss_info['name'][0]        # ボス名
                 # poptime_i = row[4] % 10000          # POP時分(INT型)
                 poptime_s = str(row[4])[6:]       # POP時分(文字列)
-                mtext += '\n' + poptime_s + ' ' + bname  
+                mtext += '\n' + poptime_s[:2] + ':' + poptime_s[2:] + ' ' + bname  
                 if len(row[5]) > 0:
                     mtext += ' 備考:' + row[5]      # 備考
         await ctx.send(mtext)
