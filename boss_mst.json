@@ -31,9 +31,10 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "72の上に行ったところ",
+        "pop_place": "74の上に行ったところ",
         "name": [
             "四賢者",
+            "カスパー",
             "カスパーズ",
             "カスパ"
         ],
@@ -45,7 +46,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "12と55の間",
+        "pop_place": "12と57の間",
         "name": [
             "スピリッド",
             "スピ"
@@ -84,7 +85,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "61の上、69の下辺り",
+        "pop_place": "63の上、71の下辺り",
         "name": [
             "アルフィア",
             "蜘蛛",
@@ -99,7 +100,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "23ハイネの右上、64鏡の森の右下辺り",
+        "pop_place": "23ハイネの右上、66鏡の森の右下辺り",
         "name": [
             "ドッペルゲンガーボス",
             "ドッペボス",
@@ -118,7 +119,8 @@
             "ダークハイエルダー",
             "ハイエル",
             "ハイエルダー",
-            "dhe"
+            "dhe",
+            "DHE"
         ],
         "note": "",
         "disable_flg": 0
@@ -142,12 +144,12 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "49DV中央",
+        "pop_place": "51DV中央",
         "name": [
             "ドレイク中央",
             "中央ドレ",
             "中ドレ",
-            "49ドレ"
+            "51ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -157,11 +159,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "50DV北",
+        "pop_place": "52DV北",
         "name": [
             "ドレイク北",
             "北ドレ",
-            "50ドレ"
+            "52ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -171,11 +173,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "51DV東",
+        "pop_place": "53DV東",
         "name": [
             "ドレイク東",
             "東ドレ",
-            "51ドレ"
+            "53ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -185,11 +187,11 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "52DV西",
+        "pop_place": "54DV西",
         "name": [
             "ドレイク西",
             "西ドレ",
-            "52ドレ"
+            "54ドレ"
         ],
         "note": "",
         "disable_flg": 0
@@ -199,7 +201,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 100,
-        "pop_place": "36山賊の巣窟",
+        "pop_place": "37山賊の巣窟",
         "name": [
             "山賊の親分",
             "親分"
@@ -212,7 +214,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "53竜の渓谷三又路",
+        "pop_place": "55竜の渓谷三又路",
         "name": [
             "疾風の巨大ドレイク",
             "デカドレ",
@@ -227,7 +229,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "48火山頂上、ダイヤ飛び可能",
+        "pop_place": "49火山頂上、ダイヤ飛び可能",
         "name": [
             "憤怒の真イフリート",
             "イフリート",
@@ -269,7 +271,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "74黄昏の山脈奥",
+        "pop_place": "76黄昏の山脈奥",
         "name": [
             "古代巨人",
             "AG",
@@ -285,7 +287,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "66雪壁",
+        "pop_place": "68雪壁",
         "name": [
             "冷酷な大足のマーヨ",
             "マーヨ",
@@ -299,7 +301,7 @@
         "pop_time": [],
         "duration_min": 0,
         "pop_rate": 50,
-        "pop_place": "48火山頂上、ダイヤ飛び可能",
+        "pop_place": "49火山頂上、ダイヤ飛び可能",
         "name": [
             "火炎のフェニックス",
             "フェニックス",
