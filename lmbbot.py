@@ -107,10 +107,12 @@ class LmBBot(commands.Cog):
     async def next(self, ctx):
         ch_id = ctx.channel.id
         # await ctx.send(ch_id)
-        # 同一チャンネルの既存の未送信・有効データを取得(POP時刻の昇順)
+        # 現在時刻を取得
+        now = datetime.datetime.today()
+        # 同一チャンネルの既存の未来のPOP・有効データを取得(POP時刻の昇順)
         c.execute(
-            "SELECT * FROM bosspop WHERE ChID = ? AND MsgSendFlg = 0 AND DisableFlg = 0 ORDER BY PopTime",
-            (ch_id, )
+            "SELECT * FROM bosspop WHERE ChID = ? AND PopTime >= ? AND DisableFlg = 0 ORDER BY PopTime",
+            (ch_id, int(now.strftime("%y%m%d%H%M")))
         )
 
         mtext = ''

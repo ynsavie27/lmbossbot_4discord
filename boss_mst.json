@@ -189,9 +189,10 @@
         "pop_rate": 100,
         "pop_place": "54DV西",
         "name": [
-            "ドレイク西",
-            "西ドレ",
-            "54ドレ"
+            "ドレイク西下",
+            "下ドレ",
+            "西ドレ下",
+            "54ドレ下"
         ],
         "note": "",
         "disable_flg": 0
@@ -345,6 +346,21 @@
             "監視者デーモン",
             "青デーモン",
             "青閣下"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "A034": {
+        "intvl_min": 120,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 100,
+        "pop_place": "54DV西→↑沸き場",
+        "name": [
+            "ドレイク西上",
+            "上ドレ",
+            "西ドレ上",
+            "54ドレ上"
         ],
         "note": "",
         "disable_flg": 0
@@ -504,6 +520,19 @@
         "name": [
             "9Fリーパー",
             "9リーパー"
+        ],
+        "note": "",
+        "disable_flg": 0
+    },
+    "S110": {
+        "intvl_min": 360,
+        "pop_time": [],
+        "duration_min": 0,
+        "pop_rate": 50,
+        "pop_place": "傲慢10階",
+        "name": [
+            "10Fリーパー",
+            "10リーパー"
         ],
         "note": "",
         "disable_flg": 0
