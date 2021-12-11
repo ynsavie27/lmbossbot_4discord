@@ -393,20 +393,6 @@
         "note": "",
         "disable_flg": 0
     },
-    "D003": {
-        "intvl_min": 60,
-        "pop_time": [],
-        "duration_min": 0,
-        "pop_rate": 50,
-        "pop_place": "GC1F",
-        "name": [
-            "ボスクライン",
-            "クライン",
-            "ファウスト"
-        ],
-        "note": "",
-        "disable_flg": 0
-    },
     "S101": {
         "intvl_min": 360,
         "pop_time": [],
